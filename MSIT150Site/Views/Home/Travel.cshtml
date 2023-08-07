@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Travel";
+}
+
+<h1>Travel</h1>
+<div class="alert alert-info" id="div1"></div>
+
+@section Styles{
+@*    <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>*@
+}
+<script id ="Tr"src="/datas/travel.js"></script>
+@section Scripts{
+    <script>
+        const p = spots.CommonFormat.Section;
+        const imageLink = p[0].file.img[5].text;
+        console.log(imageLink);
+        const datas = spots.CommonFormat.Section.map(x=>{
+            const { stitle, xbody, xurl } = x
+            return `
+                    <div class="card" style="width: 18rem;">
+                                        <img src="${imageLink}" class="card-img-top">
+                        <h5 class="card-title">${stitle}</h5>
+                       <div class="card-body">
+                        <p class="card-text">${xbody}</p>
+                            <a href="${xurl}" class="btn btn-primary">Go somewhere</a>
+                         </div>
+                    </div>`
+        })
+        document.querySelector('#div1').innerHTML = datas;
+
+        </script>
+}
+
