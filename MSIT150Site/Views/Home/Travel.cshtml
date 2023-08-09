@@ -18,11 +18,12 @@
 <script id ="Tr"src="/datas/travel.js"></script>
 @section Scripts{
     <script>
-        const p = spots.CommonFormat.Section;
-        const imageLink = p[0].file.img[5].text;
+        const imageLink = file.img[0].text;
         console.log(imageLink);
         const datas = spots.CommonFormat.Section.map(x=>{
-            const { stitle, xbody, xurl } = x
+            const { stitle, xbody, xurl, imageLink
+            } = x
+            console.log(imageLink)
             return `
                     <div class="card" style="width: 18rem;">
                                         <img src="${imageLink}" class="card-img-top">

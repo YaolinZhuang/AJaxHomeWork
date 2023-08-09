@@ -1,0 +1,67 @@
+﻿
+<h1>Register</h1>
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        @*   <form action="~/api/getdemo" method="post">*@
+        <form id="form1">
+            <div class="mb-3">
+                <label for="username" class="form-label">User Name :</label>
+                <input type="text" class="form-control" id="username" name="Name" />
+            </div>
+            <div class="mb-3">
+                <label for="UserEmail" class="form-label">User Email：</label>
+                <input type="email" class="form-control" id="UserEmail" name="Email">
+            </div>
+            <div class="mb-3">
+                <label for="userage" class="form-label">User Age :</label>
+                <input type="number" class="form-control" id="userage" name="Age" />
+            </div>            
+            <div class="mb-3">
+                <label for="userage" class="form-label">Photo：</label>
+                <input type="file" class="form-control" id="formFile" name="file" />
+            </div>
+            <button id="button1" type="submit" class="btn btn-primary">送出</button>
+        </form>
+        <div class="alert alert-info" id="div1"></div>
+    </div>
+    <div class="col-3">
+        <a href="https://chat.openai.com/" id="gpt">ChatGpt</a>
+    </div>
+</div>
+@section Styles{
+    <style>
+
+    </style>
+}
+@section Scripts{
+    <script>
+        const btn=document.querySelector('#button1');
+        const gpt = document.querySelector('#gpt');
+        //const txtName = document.querySelector('#username');
+        //const txtAge = document.querySelector('#userage');
+        const theDiv = document.querySelector('#div1');
+        btn.addEventListener('click',event=>{
+            event.preventDefault();
+
+            const xhr=new XMLHttpRequest();
+            xhr.open('POST', '/api/Register')
+            //xhr.setRequestHeader('Context-type', 'application/x-www-form-urlencoded')
+            //xhr.send(`name=${txtName.value}&age=${txtAge.value}`);
+
+            //改用FormData
+            const formData = new FormData(document.querySelector('#form1'));
+            xhr.send(formData);
+
+            xhr.addEventListener('load',()=>{
+                const data = xhr.responseText;
+                theDiv.innerHTML=data;
+            })
+        })
+        gpt.addEventListener('click',event=>{
+            if(!window.confirm("真要去嗎?")){
+                event.preventDefault();
+            }
+        })
+    </script>
+}
