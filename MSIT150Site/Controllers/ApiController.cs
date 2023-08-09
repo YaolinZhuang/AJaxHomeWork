@@ -55,5 +55,38 @@ namespace MSIT150Site.Controllers
             _context.SaveChanges();
             return Content("新增成功!!");
         }
+        public IActionResult getImageByte(int id = 1)
+        {
+            Members? members = _context.Members.Find(id);
+            byte[]? img = members.FileData;
+            return File(img, "image/jpeg");
+        }
+        //回傳城市的JSON資料
+
+        public IActionResult Cities()
+        {
+            var cities = _context.Address.Select(c => c.City).Distinct();
+            //var cities = _context.Address.Select(c => new
+            //{
+            //    c.City
+            //}).Distinct();
+            return Json(cities);
+        }
+
+        //根據城市名稱，回傳城市的鄉鎮區JSON資料
+        public IActionResult Districts(string city)
+        {
+            var districts = _context.Address.Where(a => a.City == city).Select(c => c.SiteId).Distinct();
+
+            return Json(districts);
+        }
+
+        //根據鄉鎮區名稱，回傳鄉鎮區的路名JSON資料
+        public IActionResult Roads(string siteId)
+        {
+            var roads = _context.Address.Where(a => a.SiteId == siteId).Select(c => c.Road).Distinct();
+
+            return Json(roads);
+        }
     }
 }

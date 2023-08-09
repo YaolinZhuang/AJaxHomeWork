@@ -45,7 +45,8 @@
             event.preventDefault();
 
             const xhr=new XMLHttpRequest();
-            xhr.open('POST', '/api/Register')
+            // xhr.open('POST', '/api/Register')
+            xhr.open('POST', '@Url.Content("/api/Register")')
             //xhr.setRequestHeader('Context-type', 'application/x-www-form-urlencoded')
             //xhr.send(`name=${txtName.value}&age=${txtAge.value}`);
 
