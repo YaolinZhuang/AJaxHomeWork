@@ -18,22 +18,31 @@
 <script id ="Tr"src="/datas/travel.js"></script>
 @section Scripts{
     <script>
-        const imageLink = file.img[0].text;
-        console.log(imageLink);
-        const datas = spots.CommonFormat.Section.map(x=>{
-            const { stitle, xbody, xurl, imageLink
-            } = x
-            console.log(imageLink)
-            return `
+        //const imageLink = file.img[0].text;
+        //console.log(imageLink);
+        const datas = spots.CommonFormat.Section.map(x => {
+            //條件一:先檢查物件是否有file屬性
+            //條件二:先確認陣列裡是否至少有一個元素
+            //條件三:最後確認陣列[0].text有沒有值
+            if (x.file.img && x.file.img.length > 0 && x.file.img[0].text) {
+                const p = x.file.img[0].text;
+                const { stitle, xbody, xurl } = x;
+                return `
                     <div class="card" style="width: 18rem;">
-                                        <img src="${imageLink}" class="card-img-top">
+                        <img src="${p}" class="card-img-top">
                         <h5 class="card-title">${stitle}</h5>
-                       <div class="card-body">
-                        <p class="card-text">${xbody}</p>
+                        <div class="card-body">
+                            <p class="card-text">${xbody}</p>
                             <a href="${xurl}" class="btn btn-primary">Go somewhere</a>
-                         </div>
-                    </div>`
-        })
+                        </div>
+                    </div>`;
+            } else {
+                //如果找不到圖片則顯示沒有此image
+                return '<div class="card">圖片被怪物吃掉了</div>';
+            }
+        });
+
+
         document.querySelector('#div1').innerHTML = datas;
 
         </script>

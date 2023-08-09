@@ -59,7 +59,16 @@
             //myDiv.innerHTML = "Button Click"
 
             //步驟二對伺服器發出要求(Request)
-            xhr.open('GET', '/api/index');
+            //xhr.open('GET', '/api/index'); 相對位置有可能抓不到所以不用此方法
+
+            //改用此方法產生路徑
+            xhr.open('GET','@Url.Content("/api/index")')
+
+
+
+
+
+            //睡三秒
             xhr.timeout=3000;
             xhr.send();
 

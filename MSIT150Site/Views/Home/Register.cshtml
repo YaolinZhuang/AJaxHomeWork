@@ -43,21 +43,39 @@
         const theDiv = document.querySelector('#div1');
         btn.addEventListener('click',event=>{
             event.preventDefault();
+            
+            //const xhr=new XMLHttpRequest();
+            //// xhr.open('POST', '/api/Register')
+            //xhr.open('POST', '@Url.Content("/api/Register")')
+            ////xhr.setRequestHeader('Context-type', 'application/x-www-form-urlencoded')
+            ////xhr.send(`name=${txtName.value}&age=${txtAge.value}`);
 
-            const xhr=new XMLHttpRequest();
-            // xhr.open('POST', '/api/Register')
-            xhr.open('POST', '@Url.Content("/api/Register")')
-            //xhr.setRequestHeader('Context-type', 'application/x-www-form-urlencoded')
-            //xhr.send(`name=${txtName.value}&age=${txtAge.value}`);
+            ////改用FormData
+            //const formData = new FormData(document.querySelector('#form1'));
+            //xhr.send(formData);
 
-            //改用FormData
-            const formData = new FormData(document.querySelector('#form1'));
-            xhr.send(formData);
+            //xhr.addEventListener('load',()=>{
+            //    const data = xhr.responseText;
+            //    theDiv.innerHTML=data;
+            //})
 
-            xhr.addEventListener('load',()=>{
-                const data = xhr.responseText;
-                theDiv.innerHTML=data;
+
+            //改用 fetch 傳送FormData到server端
+
+            const formData=new FormData(document.querySelector('#form1'));
+            fetch('@Url.Content("/api/register")',{
+                body:formData,
+                method:'POST'
             })
+            .then(Response=>{
+                if(Response.ok){
+                    alert("新增成功")
+                    location.href='@Url.Content("/members")'
+                }else{
+                    alert("錯誤!")
+                }
+            })
+
         })
         gpt.addEventListener('click',event=>{
             if(!window.confirm("真要去嗎?")){

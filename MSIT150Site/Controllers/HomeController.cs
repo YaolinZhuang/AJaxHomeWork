@@ -41,6 +41,14 @@ namespace MSIT150Site.Controllers
         {
             return View();
         }
+        public IActionResult Promise()
+        {
+            return View();
+        }
+        public IActionResult Fetch()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

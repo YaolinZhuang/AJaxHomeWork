@@ -12,9 +12,16 @@
 }
 @section Scripts{
     <script>
-        const xhr = new XMLHttpRequest
-        xhr.open('Get','/Api/getDemo?name=mary&age=30');
+        const xhr = new XMLHttpRequest();
+
+
+        const name = "jaccck";
+        const age = 25;
+        //xhr.open('Get','@Url.Content("/Api/getDemo")?name=mary&age=30');
+        xhr.open('Get', `@Url.Content("/Api/getDemo")?name=${name}&age=${age}`);
+
         xhr.send();
+
         xhr.addEventListener('load',()=>{
             const data =xhr.responseText;
             document.querySelector('#div1').innerHTML = `<h3>${data}</h3>`

@@ -19,8 +19,8 @@ namespace MSIT150Site.Controllers
              }
             public IActionResult Index()
         {
-            Thread.Sleep(3000);//睡3s
-            return Content("Yoyoyo!! Ajax!");
+            Thread.Sleep(1000);//睡1s
+            return Content("Yoyoyo!! Fetch!");
         }
         public IActionResult getDemo(AddUserViewModel user)
         {
