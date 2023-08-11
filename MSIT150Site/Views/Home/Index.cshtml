@@ -5,6 +5,9 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @Html.Partial("Partial1")
+    @Html.Partial("Partial2")
+@*    會看不見寫在controller裡面的viewbag.message*@
 </div>
 
 <table id="testtable" class="table table-bordered table-hover table-striped">

@@ -41,6 +41,23 @@ namespace MSIT150Site.Controllers
         {
             return View();
         }
+        public IActionResult History()
+        {
+            return View();
+        }
+        public IActionResult jQuery()
+        {
+            return View();
+        }
+        public IActionResult Partial1()
+        {
+            return PartialView();
+        }
+        public IActionResult Partial2()
+        {
+            ViewBag.message="aaaaaa partial2";
+            return PartialView();
+        }
         public IActionResult Promise()
         {
             return View();
